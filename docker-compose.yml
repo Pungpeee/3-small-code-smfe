@@ -1,0 +1,8 @@
+version: "3.3"
+services:      
+  frontend:
+    image: pungpeee19/smart_farming:latest   
+networks:
+    default:
+        external:
+            name: smart-farming-network
