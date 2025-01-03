@@ -7,7 +7,7 @@ WORKDIR /usr/src
 # Copy application code
 COPY . .
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 RUN npm run build
 
 # Expose the application port
