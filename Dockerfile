@@ -1,16 +1,17 @@
 FROM node:18-alpine
 
+# Create and set the working directory
 RUN mkdir -p /usr/src
 WORKDIR /usr/src
 
+# Copy application code
 COPY . .
-COPY package*.json /usr/src/
 
-
-RUN npm install --force
-
-# start app
+RUN npm install
 RUN npm run build
+
+# Expose the application port
 EXPOSE 3000
 
-CMD npm start
+# Use JSON array syntax for CMD
+CMD ["npm", "start"]
