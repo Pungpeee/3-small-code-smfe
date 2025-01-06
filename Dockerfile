@@ -1,17 +1,18 @@
-FROM node:16-alpine
+FROM node:18-alpine
 
-# Create and set the working directory
-RUN mkdir -p /usr/src
-WORKDIR /usr/src
 
-# Copy application code
+WORKDIR /usr/src/app
+
+
+
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --frozen-lockfile
+
+
+
 COPY . .
-
-RUN npm install --legacy-peer-deps
 RUN npm run build
-
-# Expose the application port
-EXPOSE 8080
-
-# Use JSON array syntax for CMD
+EXPOSE 3000
 CMD ["npm", "start"]

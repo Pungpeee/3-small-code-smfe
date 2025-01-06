@@ -69,22 +69,22 @@ pipeline {
                 checkout scm
             }
         }
-        // stage('Code - SonarQube Scan-ls') {
-        //     steps {
-        //         script {
-        //             docker.image('sonarsource/sonar-scanner-cli:latest').inside {
-        //                 sh '''
-        //                 sonar-scanner \
-        //                     -Dsonar.projectKey=3-small-code-smfe \
-        //                     -Dsonar.sources=. \
-        //                     -Dsonar.host.url=${SONAR_HOST_URL} \
-        //                     -Dsonar.login=${SONAR_TOKEN}
-        //                 '''
-        //             }
+        stage('Code - SonarQube Scan-ls') {
+            steps {
+                script {
+                    docker.image('sonarsource/sonar-scanner-cli:latest').inside {
+                        sh '''
+                        sonar-scanner \
+                            -Dsonar.projectKey=3-small-code-smfe \
+                            -Dsonar.sources=. \
+                            -Dsonar.host.url=${SONAR_HOST_URL} \
+                            -Dsonar.login=${SONAR_TOKEN}
+                        '''
+                    }
 
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
 
         stage('Build Docker Image-ls') {
             steps {
@@ -168,7 +168,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        docker exec devsecops-zap zap-baseline.py -t http://20.212.250.197:1001 -r zapreport-3-small-code-smfe-jk1.html -I   || true
+                        docker exec devsecops-zap zap-baseline.py -t http://20.212.250.197:1001 -r /zap/wrk/zapreport-3-small-code-smfe-jk1.html -I   || true
                           
                     '''
                     sh 'docker cp devsecops-zap:/zap/wrk/zapreport-3-small-code-smfe-jk.html /mnt/zap-reports/zapreport-3-small-code-smfe-jk.html        '
