@@ -9,9 +9,9 @@
     "start": "vue-cli-service serve" 
   },
   "dependencies": {
-    "axios": "^1.7.8",
+    "axios": "^0.27.2",
     "core-js": "^3.6.5",
-    "firebase": "^10.9.0",
+    "firebase": "9.23.0",
     "gulp-postcss": "^9.0.1",
     "vue": "^3.3.5",
     "vue-router": "^4.0.15",
