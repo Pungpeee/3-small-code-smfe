@@ -39,7 +39,7 @@ pipeline {
                     ssh -o StrictHostKeyChecking=no ${USER}@${HOST} "
                         echo ${DOCKER_TOKEN} | docker login -u pungpeee19 --password-stdin && \
                         docker pull pungpeee19/3-small-code-smfe:latest && \
-                        docker run -d --restart=always -p 1001:8080 --name 3-small-code-smfe pungpeee19/3-small-code-smfe:latest
+                        docker run -d --restart=always -p 1001:3000 --name 3-small-code-smfe pungpeee19/3-small-code-smfe:latest
                     "
                     '''
                 }
